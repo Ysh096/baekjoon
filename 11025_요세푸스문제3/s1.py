@@ -43,19 +43,20 @@ sys.stdin = open('input.txt')
 
 
 # 3. 재귀를 while문으로 풀어봄 => 시간 초과
-# N, K = map(int, input().split())
-# n = 1
-# value = 1
-# while n <= N:
-#     value = ((value + K - 1) % n) + 1
-#     n += 1
-# print(value)
+N, K = map(int, input().split())
+n = 1
+value = 1
+while n <= N:
+    value = ((value + K - 1) % n) + 1
+    n += 1
+print(value)
 
 # 4. for문(wiki)
-N, K = map(int, input().split())
-res = 0
-for n in range(1, N+1):
-    res = (res+K) % n
-
-print(res+1)
+# N, K = map(int, input().split())
+# N = 41
+# res = 0
+# for n in range(1, N+1):
+#     res = (res+K) % n
+#
+# print(res+1)
 

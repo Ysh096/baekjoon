@@ -69,27 +69,44 @@ sys.stdin = open('input.txt')
 #         val += 1
 # print(cnt)
 
-N, K, M = map(int, input().split())
-friends = [i for i in range(1, N+1)]
+# 어떻게 해야 가장 효율적일까?
+# 1. len()을 쓰지 말자
+# N, K, M = map(int, input().split())
+# start = 1 # 시작 지점이자 val=K일 때 없앨 위치
+# value = 1
+# cnt = 0
+# # M이 목표의 위치
+# while True:
+#     if value == K:
+#         if start == M:
+#             cnt += 1
+#             break
+#         elif start < M:
+#             M -= 1
+#             cnt += 1
+#         else:
+#             cnt += 1
+#         N -= 1
+#         value = 1
+#     else:
+#         start += 1
+#         value += 1
+#     if start > N:
+#         start = start % N
+# print(cnt)
 
-target = friends[M-1]
-tmp_friends = []
-idx = 0
-val = 1
-cnt = 0 # 몇 번째로 퇴장?
+# 이게 무슨  풀이일까?
+N, K, M = map(int,input().split())
+original_N = N
 while True:
-    if val == K:
-        cnt += 1
-        if idx-1 == target:
-            break
-        idx += 1
-        val = 1
-    else: # val == 1
-        tmp_friends.append(friends[idx])
-        idx += 1
-        val += 1
-    if idx == N:
-        friends = tmp_friends
-        N = len(friends)
-        idx = 0
-print(cnt)
+    mod = K % N
+    if mod == 0:
+        mod = N
+    if mod == M:
+        break
+    elif mod < M:
+        M = M - mod
+    else:
+        M = M - mod + N
+    N -= 1
+print(original_N - N + 1)
