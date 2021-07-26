@@ -1,18 +1,19 @@
 import sys
 sys.stdin = open('input.txt')
+number = int(sys.stdin.readline())
+a_list, b_list, c_list, d_list = [], [], [], []
+for _ in range(number):
+    a, b, c, d = map(int,sys.stdin.readline().split())
+    a_list.append(a); b_list.append(b); c_list.append(c); d_list.append(d)
 
-n = int(input())
-A, B, C, D = [], [], [], []
-for _ in range(n):
-    a, b, c, d = map(int, input().split())
-    A.append(a)
-    B.append(b)
-    C.append(c)
-    D.append(d)
+a_b_dict = dict()
+for a in a_list:
+    for b in b_list:
+        a_b_dict[a+b] = a_b_dict.get(a+b, 0) + 1
 
-print(A)
-print(B)
-print(C)
-print(D)
+count = 0
+for c in c_list:
+    for d in d_list:
+        count += a_b_dict.get(-(c+d),0)
 
-# 이진탐색으로 어떻게?
+print(count)
